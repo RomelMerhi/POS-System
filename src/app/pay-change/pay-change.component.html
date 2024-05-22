@@ -1,0 +1,32 @@
+
+    <ion-content [ngStyle]="{'max-height':'7vh'}"></ion-content>
+
+<div class="keyboard" [ngStyle]="{'min-width':'100%', 'height':'50vh'}">
+    <div [ngStyle]="{'min-width':'100%', 'min-height':'25%'}">
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('1')">1</ion-button>
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('2')">2</ion-button>
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('3')">3</ion-button>
+    </div>
+    <div [ngStyle]="{'min-width':'100%', 'min-height':'25%'}">
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('4')">4</ion-button>
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('5')">5</ion-button>
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('6')">6</ion-button>
+    </div>
+    <div [ngStyle]="{'min-width':'100%', 'min-height':'25%'}">
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('7')">7</ion-button>
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('8')">8</ion-button>
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('9')">9</ion-button>
+    </div>
+    <div [ngStyle]="{'min-width':'100%', 'min-height':'25%'}">
+        <ion-button [ngStyle]="{'min-width':'32%','height':'11vh'}" (click)="onKeyPress('0')">0</ion-button>
+        <ion-button [ngStyle]="{'min-width':'64%','height':'11vh'}" (click)="onKeyPress('del')">DEL</ion-button>
+    </div>
+</div>
+
+<div [ngStyle]="{'min-width':'100%','height':'40vh'}">
+
+    <ion-button [ngStyle]="{'min-width':'97%','height':'35%'}" (click)="updatePaidStatus()">Pay</ion-button>
+    <ion-button [ngStyle]="{'min-width':'97%','height':'35%'}">Receipt</ion-button>
+    <ion-input [ngStyle]="{'min-width':'97%','height':'25%'}"placeholder="Mail"></ion-input>
+
+</div>

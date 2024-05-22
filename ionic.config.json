@@ -1,0 +1,7 @@
+{
+  "name": "POS-System",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,35 @@
+<ion-content [ngStyle]="{'max-height':'100vh'}">
+  <ion-content [ngStyle]="{'max-height':'7vh'}"></ion-content>
+
+  <ion-content [ngStyle]="{'max-height':'50vh'}">
+    <ion-item>
+      <ion-chip *ngFor="let item of itemsOfselectedOrder" [ngStyle]="{'min-width':'99%'}">
+        <ion-icon name="fast-food-outline"></ion-icon>
+        <ion-label>{{item.ItemName}}</ion-label>
+        <ion-label [ngStyle]="{'min-width':'10%','text-align':'right'}">{{item.Price}}$</ion-label>
+        <ion-icon name="close-circle" (click)="DeleteItem(item.ItemName)"></ion-icon>
+      </ion-chip>
+    </ion-item>
+  </ion-content>
+
+
+  <ion-content [ngStyle]="{'height':'43vh'}">
+    <ion-list [ngStyle]="{'height':'100%'}">
+      <ion-item>
+
+        <ion-input label="Total" labelPlacement="floating" [readonly]="true" value="{{TotalAmountUSD?(Total*89000):Total}}"></ion-input>
+        <ion-toggle slot="end" [(ngModel)]="TotalAmountUSD"></ion-toggle>
+      </ion-item>
+      
+<ion-button (click)="updateOrder()" style="width: 100%;">Save</ion-button>
+
+<!-- <ion-input label="Total Sales" [readonly]="true" labelPlacement="floating" value="{{dailyTotal}}"> </ion-input> -->
+
+
+
+    </ion-list>
+  </ion-content>
+
+
+
+</ion-content>

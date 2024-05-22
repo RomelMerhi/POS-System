@@ -1,0 +1,19 @@
+<div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-title>Add Item</ion-title>
+      <ion-input placeholder="name" [(ngModel)]="name"></ion-input>
+      <ion-input placeholder="category" [(ngModel)]="category"></ion-input>
+      <ion-input placeholder="description" [(ngModel)]="description"></ion-input>
+      <ion-input placeholder="ingredients" [(ngModel)]="ingredients"></ion-input>
+      <ion-input placeholder="price" [(ngModel)]="price"></ion-input>
+      <ion-input placeholder="image" [(ngModel)]="image"></ion-input>
+ 
+       <ion-button (click)="sendItem()">ADD</ion-button>
+    </ion-card-header>
+
+  
+  </ion-card>
+
+</div>

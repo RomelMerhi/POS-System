@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <div [ngStyle]="{'width':'20vw','display':'inline-block','vertical-align': 'middle'}">
+      <ion-title [ngStyle]="{'font-size':'100%'}">Welcome, {{user}}</ion-title>
+      <ion-title [ngStyle]="{'font-size':'75%'}">{{ currentDate | date:'medium' }}</ion-title>
+    </div>
+
+
+    <div [ngStyle]="{'width':'50vw','display':'inline-block'}">
+      <ion-searchbar [ngStyle]="{'width':'100%'}"></ion-searchbar>
+    </div>
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content [ngStyle]="{width:'100vw','min-height':'100vh'}">
+
+
+
+  <ion-content [ngStyle]="{'display':'inline-block','max-width':'8%', 'height':'100vh'}">
+    <app-navbar></app-navbar>
+  </ion-content>
+
+  <ion-content [ngStyle]="{'display':'inline-block','max-width':'35%', 'height':'100vh'}">
+    <app-cashier-orders></app-cashier-orders>
+  </ion-content>
+
+  <ion-content [ngStyle]="{'display':'inline-block', 'max-width':'27%', 'height':'100vh'}">
+    <app-order-pannel></app-order-pannel>
+  </ion-content>
+
+  <ion-content [ngStyle]="{'display':'inline-block', 'max-width':'30%', 'height':'100vh'}" *ngIf="show==false" >
+    <app-pay-change></app-pay-change>
+  </ion-content>
+
+  <ion-content *ngIf="show==true" [ngStyle]="{'display':'inline-block', 'max-width':'30%', 'height':'100vh'}">
+
+    <app-orders-admin></app-orders-admin>
+
+  </ion-content>
+
+</ion-content>
+
+
+

@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <div [ngStyle]="{'width':'20vw','display':'inline-block','vertical-align': 'middle'}">
+      <ion-title [ngStyle]="{'font-size':'100%'}">Welcome,{{user}} </ion-title>
+      <ion-title [ngStyle]="{'font-size':'75%'}">{{ currentDate | date:'medium' }}</ion-title>
+    </div>
+
+
+    <div [ngStyle]="{'width':'50vw','display':'inline-block'}">
+      <ion-searchbar [ngStyle]="{'width':'100%'}"></ion-searchbar>
+    </div>
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content [ngStyle]="{width:'100vw','min-height':'100vh'}">
+
+  <ion-content [ngStyle]="{'display':'inline-block','max-width':'8%', 'height':'100vh'}">
+    <app-navbar3></app-navbar3>
+  </ion-content>
+
+  <ion-content [ngStyle]="{'display':'inline-block','max-width':'35%', 'height':'100vh'}">
+    <app-orders-admin2></app-orders-admin2>
+  </ion-content>
+
+  <ion-content [ngStyle]="{'display':'inline-block', 'max-width':'30%', 'height':'100vh'}">
+    <app-order-pannel-admin></app-order-pannel-admin>
+  </ion-content>
+
+  <ion-content [ngStyle]="{'display':'inline-block', 'max-width':'27%', 'height':'100vh'}">
+
+
+    <ion-segment value="default">
+      <ion-segment-button (click)="setUsersItems(true)">
+        <ion-label>Users</ion-label>
+      </ion-segment-button>
+      <ion-segment-button (click)="setUsersItems(false)">
+        <ion-label>Items</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+
+    <ion-content [ngStyle]="{'display':'inline-block', 'max-width':'100%', 'min-height':'100vh','overflow': 'hidden'}"
+      *ngIf="usersItems==true">
+      <app-pay-change-admin></app-pay-change-admin>
+    </ion-content>
+
+    <ion-content [ngStyle]="{'display':'inline-block', 'max-width':'100%', 'min-height':'100vh'}" *ngIf="usersItems==false">
+      <app-add-items3></app-add-items3>
+    </ion-content>
+
+  </ion-content>
+
+</ion-content>

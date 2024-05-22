@@ -1,0 +1,25 @@
+<ion-list lines="none" style="overflow: hidden; min-width: 100%;">
+
+  <ion-item 
+    [ngStyle]="{'min-width': '100%','min-height':'30vh','display': 'flex', 'justify-content': 'center','align-items': 'center'}">
+    <ion-tab-button tab="radio" routerLink="/waiter" [ngStyle]="{'min-width':'100%'}">
+      <ion-icon name="fast-food-outline"></ion-icon>    Waiter
+    </ion-tab-button>
+  </ion-item>
+
+  <ion-item 
+
+  [ngStyle]="{'min-width': '100%','min-height':'30vh','display': 'flex', 'justify-content': 'center','align-items': 'center'}">
+  <ion-tab-button tab="radio" routerLink="/cashier" [ngStyle]="{'min-width':'100%'}">
+    <ion-icon name="wallet-outline"></ion-icon>    Cashier
+  </ion-tab-button>
+</ion-item>
+
+  <ion-item
+    [ngStyle]="{'min-height':'30vh','display': 'flex', 'justify-content': 'center','align-items': 'center'}">
+    <ion-tab-button tab="library" [ngStyle]="{'min-width':'100%'}" >
+      <ion-icon name="person-circle-outline"></ion-icon> Admin
+    </ion-tab-button>
+  </ion-item>
+
+</ion-list>

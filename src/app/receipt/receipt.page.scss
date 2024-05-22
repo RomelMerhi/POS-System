@@ -1,0 +1,49 @@
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  ion-card {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  ion-card-header {
+    background-color: #3880ff;
+    color: white;
+  }
+  
+  ion-card-title {
+    text-align: center;
+    font-size: 1.5em;
+  }
+  
+  ion-item {
+    --background: transparent;
+  }
+  
+  ion-item ion-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 1.2em;
+  }
+  
+  ion-item ion-label strong {
+    font-weight: bold;
+  }
+  
+  ion-item ion-label span {
+    color: #555;
+  }
+  
+  ion-item.total-label ion-label {
+    justify-content: flex-end;
+    font-size: 1.5em;
+    margin-top: 1em;
+  }
+  

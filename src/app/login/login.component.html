@@ -1,0 +1,39 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <ion-card [ngStyle]="{'margin':'auto','min-width':'30vw', 'min-height':'30vh'}">
+    <ion-card-header>
+      <ion-card-title [ngStyle]="{'margin':'auto'}">Log In</ion-card-title>
+      <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+    </ion-card-header>
+
+
+
+    <ion-list [ngStyle]="{'margin':'auto','max-width':'80%'}">
+      <ion-item>
+        <ion-card-content [ngStyle]="{'font-size':'80%','color':'red'}">
+        {{loginMessage}}
+        </ion-card-content>
+      </ion-item>
+      <ion-item>
+        <ion-input aria-label="Email" placeholder="Username" [(ngModel)]="Username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input aria-label="Email" placeholder="Password" [(ngModel)]="Password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-button [ngStyle]="{'width':'100%'}" (click)="loginValid()">Log In</ion-button>
+        
+
+
+      </ion-item>
+
+      <ion-card-content [ngStyle]="{'font-size':'70%','text-align':'center'}">
+        If you do not have an account please contact your supervisor.
+      </ion-card-content>
+
+
+    </ion-list>
+
+
+
+  </ion-card>
+</div>

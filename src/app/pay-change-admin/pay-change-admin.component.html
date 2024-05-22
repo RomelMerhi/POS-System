@@ -1,0 +1,63 @@
+
+
+<ion-content style="overflow: hidden;">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>{{users[userNb].Username}}</ion-card-title><br/>
+        
+        <ion-toggle [(ngModel)]="cashierS">cashier</ion-toggle><br/>
+        <ion-toggle [(ngModel)]="waiterS">waiter</ion-toggle><br/>
+        <ion-toggle [(ngModel)]="adminS">admin</ion-toggle><br/>
+         <ion-button (click)="sendUsersaved()">Save</ion-button>
+         <ion-button (click)="deleteUser(users[userNb].Username)" color="danger">Delete</ion-button>
+      </ion-card-header>
+
+      <ion-item style="margin:auto">
+        <ion-button (click)="updateUserNb(-1)"style="margin: auto;" style="width: 48%; min-height: 5vh;">-</ion-button>
+        <ion-button (click)="updateUserNb(+1)"style="margin: auto;" style="width: 48%; min-height: 5vh;">+</ion-button>
+        </ion-item>      
+      
+    </ion-card>
+  
+    <ion-card>
+      <ion-card-header>
+        <ion-title>Add User</ion-title>
+        <ion-input placeholder="username" [(ngModel)]="username"></ion-input>
+        <ion-input placeholder="Password" [(ngModel)]="password"></ion-input>
+         <ion-toggle [(ngModel)]="cashier">cashier</ion-toggle><br/>
+         <ion-toggle [(ngModel)]="waiter">waiter</ion-toggle><br/>
+         <ion-toggle [(ngModel)]="admin">admin</ion-toggle><br/>
+         <ion-button (click)="sendUser()">ADD</ion-button>
+      </ion-card-header>
+  
+    
+    </ion-card>
+    
+
+
+</ion-content>
+
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

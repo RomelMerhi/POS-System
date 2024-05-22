@@ -1,0 +1,213 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <div [ngStyle]="{'width':'20vw','display':'inline-block','vertical-align': 'middle'}" routerLink="/login">
+      <ion-title [ngStyle]="{'font-size':'100%'}">Welcome, {{username}}</ion-title>
+      <ion-title [ngStyle]="{'font-size':'75%'}">{{ currentDate | date:'medium' }}</ion-title>
+    </div>
+
+
+    <div [ngStyle]="{'width':'50vw','display':'inline-block'}">
+      <ion-searchbar [ngStyle]="{'width':'100%'}"></ion-searchbar>
+    </div>
+
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content [ngStyle]="{ 'min-width':'100vh', 'height':'94vh','overflow': 'hidden' }" >
+
+  <ion-content [ngStyle]="{'display':'inline-block', 'max-width':'8%', 'max-height':'100vh' }">
+    <app-navbar2 [ngStyle]="{'max-height':'100%'}"></app-navbar2> 
+  </ion-content>
+
+  <ion-content [fullscreen]="true" [ngStyle]="{'display':'inline-block', 'max-width':'65%'}">
+
+    <ion-segment value="default">
+      <ion-segment-button value="{{category}}" *ngFor="let category of Categories" (click)="selectCategory(category)">
+        <ion-label>{{category}}</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Tab 1</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-card [ngStyle]="{'min-width':'22%', 'max-Width':'22%','height':'40vh', display:'inline-block'}" *ngFor="let data of Data"
+      (click)="AddToOrder(data.Name, data.Price)">
+      <img style="height: 50%;" alt="Item Image" src={{data.Image}} />
+      <ion-card-header>
+        <ion-card-title>{{data.Name}} {{data.Price}}$</ion-card-title>
+        <ion-card-subtitle>{{data.Ingredient}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>{{data.Description}}</ion-card-content>
+    </ion-card>
+
+  </ion-content>
+
+
+  <ion-content [ngStyle]="{'display':'inline-block', 'max-width':'27%', 'background-color':'white','max-height':'90vh'}">
+
+    <ion-segment value="default">
+      <ion-segment-button value="default" (click)="sidebarChange('Menus')">
+        <ion-label>All</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment" (click)="generateID()">
+        <ion-label>New</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+
+    <!--display New order pannel-->
+    <ion-content [ngStyle]="{'min-height':'50%'}" *ngIf="displaySideBar=='New'">
+
+      <ion-list>
+
+        <ion-item>
+          <p>ID: {{orderID}}</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="Name:" [(ngModel)]="customerName"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <p>Time: {{ orderTime | date : "EEEE YYYY-MM-dd hh:mm:ss" }}</p>
+        </ion-item>
+
+
+        <ion-segment value="custom">
+          <ion-segment-button value="Dine In" (click)="setOrderType('Dine In')">
+            <ion-label>Dine IN</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Take Away" (click)="setOrderType('Take Away')">
+            <ion-label>Take Away</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Delivery" (click)="setOrderType('Delivery')">
+            <ion-label>Delivery</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+        <ion-item *ngIf="orderType=='Dine In'">
+          <ion-select label="Table" placeholder="Table" [(ngModel)]="Table">
+            <ion-select-option value="0">Other</ion-select-option>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="1">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="orderType=='Delivery'">
+          <ion-input label="Region:" [(ngModel)]="Location.region"></ion-input>
+          <ion-input label="Street:" [(ngModel)]="Location.street"></ion-input>
+          <ion-input label="Building:" [(ngModel)]="Location.building"></ion-input>
+          <ion-input label="Floor:" [(ngModel)]="Location.floor"></ion-input>
+        </ion-item>
+
+        <ion-item [ngStyle]="{'min-height':'50%'}">
+
+          <ion-chip [ngStyle]="{'display': 'flex', 'justify-content': 'space-between', 'min-width':'95%'}"
+            *ngFor="let item of itemCount">
+            <ion-icon name="fast-food-outline"></ion-icon>
+            <ion-label style="min-width:85%">{{item.itemName}}</ion-label>
+            <ion-label>x{{item.quantity}}</ion-label>
+            <ion-icon name="close-circle" (click)="DeleteItem(item.itemName)"></ion-icon>
+          </ion-chip>
+          
+        </ion-item>
+
+        <ion-item >
+          <ion-input label="Subtotal:" [readonly]="true" [(ngModel)]="CurrentOrderTotal"></ion-input>
+          <ion-input label="TVA:" [readonly]="true" [(ngModel)]="TVA"></ion-input>
+          <ion-input label="Total:" [readonly]="true" value="{{CurrentOrderTotal+((TVA/100)*CurrentOrderTotal)}}"></ion-input>
+          <ion-input label="Note:" [(ngModel)]="note"></ion-input>
+        </ion-item>
+
+        <ion-button slot="end" [ngStyle]="{'display': 'inline-block', 'vertical-align': 'middle', 'width':'90%', 'margin-left':'5%'}"
+         (click)="CreateOrder()">Send</ion-button>
+
+      </ion-list>
+
+
+    </ion-content>
+
+    <!--display all orders-->
+    <ion-content [ngStyle]="{'min-height':'50%'}" *ngIf="displaySideBar=='Menus'">
+
+      <ion-chip [ngStyle]="{'display': 'flex', 'min-width':'95%'}" *ngFor="let order of Orders"
+        (click)="getOrder(order.ID)">
+
+     
+          <ion-icon *ngIf="order.OrderType=='Dine In'" name="restaurant-outline"></ion-icon>  
+          <ion-icon *ngIf="order.OrderType=='Delivery'" name="call-outline"></ion-icon>
+          <ion-icon *ngIf="order.OrderType=='Take Away'" name="bag-handle-outline"></ion-icon>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>{{order.Name}}</ion-label>
+              </ion-col>
+              <ion-col size="6" style="text-align: right;">
+                <ion-label>{{order.OrderType}}</ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>{{order.ID}}</ion-label>
+              </ion-col>
+              <ion-col size="6" style="text-align: right;">
+                <ion-label>{{order.Time | date:'HH:mm'}}</ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+      </ion-chip>
+
+    </ion-content>
+
+    <!--display selected order-->
+    <ion-content [ngStyle]="{'min-height':'50%'}" *ngIf="displaySideBar=='selectedOrder'">
+
+      <ion-item><p>ID: {{selectedOrder[1]}}</p></ion-item>
+      <ion-item><p>Name: {{selectedOrder[4]}}</p></ion-item>
+      <ion-item><p>Order Type: {{selectedOrder[6]}}</p></ion-item>
+      <ion-item><p>Time: {{selectedOrder[10] | date : "EEEE YYYY-MM-dd hh:mm:ss" }}</p></ion-item>
+
+
+      <p *ngIf="selectedOrder[6]=='Delivery'">Region: {{selectedOrder[3].building}}</p>
+      <p *ngIf="selectedOrder[6]=='Delivery'">Street: {{selectedOrder[3].street}}</p>
+      <p *ngIf="selectedOrder[6]=='Delivery'">Building: {{selectedOrder[3].building}}</p>
+      <p *ngIf="selectedOrder[6]=='Delivery'">Floor: {{selectedOrder[3].floor}}</p>
+
+      <p *ngIf="selectedOrder[6]=='Dine In'">Table: {{selectedOrder[9]}}</p>
+
+      <ion-item>
+        <ion-chip [ngStyle]="{'display': 'flex','justify-content':'space-between', 'min-width':'95%'}"
+          *ngFor="let item of itemCount">
+
+          <ion-icon name="fast-food-outline"></ion-icon>
+          <ion-label style="min-width:85%">{{item.itemName}}</ion-label>
+            <ion-label>x{{item.quantity}}</ion-label>
+          <ion-label [ngStyle]="{'min-width':'10%','text-align':'right'}">{{item.price}}$</ion-label>
+        </ion-chip>
+
+        <ion-toolbar [ngStyle]="{'padding':'5%'}">
+          <p>Subtotal: {{CurrentOrderTotal}}</p>
+          <p>TVA: {{TVA}}</p>
+          <p><b>Payable Amount: {{CurrentOrderTotal+((TVA/100)*CurrentOrderTotal)}}</b></p>
+        </ion-toolbar>
+
+        <ion-button (click)="UpdateOrder()" [ngStyle]="{'min-width':'95%', 'min-height':'5vh'}">Save</ion-button>
+      </ion-item>
+
+
+
+    </ion-content>
